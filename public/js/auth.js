@@ -1,0 +1,35 @@
+console.log("auth.js cargado correctamente");
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const messageDiv = document.getElementById('message');
+
+    try {
+        const response = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            // Guardar token y usuario
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('usuario', JSON.stringify(data.usuario));
+
+            // Redirigir
+            window.location.href = 'dashboard.html';
+        } else {
+            messageDiv.textContent = data.message || 'Credenciales incorrectas';
+            messageDiv.className = 'message error';
+        }
+    } catch (error) {
+        messageDiv.textContent = 'Error de conexión';
+        messageDiv.className = 'message error';
+    }
+});

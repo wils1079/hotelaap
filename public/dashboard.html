@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HotelApp - Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+
+        <!-- ========== HEADER ========== -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1>🏨 ImperialRooms</h1>
+                
+                <div class="user-info">
+                    <span id="userName"></span>
+                    <span id="userRole" class="role-badge"></span>
+                    <button id="logoutBtn" class="btn-secondary">🚪 Cerrar Sesión</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- ========== MAIN ========== -->
+        <main class="dashboard-main">
+
+            <!-- SIDEBAR DINÁMICO -->
+            <aside class="sidebar">
+                <nav class="sidebar-nav" id="sidebarNav">
+                    <!-- El menú se genera desde dashboard.js -->
+                </nav>
+            </aside>
+
+            <!-- CONTENIDO DINÁMICO -->
+            <section class="content-area">
+                <div id="dashboardContent">
+                    <!-- Aquí se carga TODO el dashboard según el rol -->
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ========== JS ========== -->
+    <script type="module" src="/js/dashboard.js"></script>
+</body>
+</html>
