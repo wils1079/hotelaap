@@ -17,7 +17,7 @@ export function tablaPedidos(pedidos = []) {
                     pedidos.length > 0
                         ? pedidos.map(p => `
                             <tr>
-                                <td>${p.reservaId}</td>
+                                <td>${p.reservaId.usuarioId.nombre}</td>
                                 <td>${p.descripcion}</td>
                                 <td>$${p.precio}</td>
                                 <td>${p.estado}</td>

@@ -28,7 +28,7 @@ const router = express.Router();
  *                 type: string
  *               rol:
  *                 type: string
- *                 enum: [Administrador General, Recepcionista, Cocinero, Servicio de Limpieza, Cliente]
+ *                 enum: [Administrador General, Recepcionista, Cocinero, limpieza, Cliente]
  *     responses:
  *       201:
  *         description: Usuario registrado exitosamente

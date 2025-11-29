@@ -13,6 +13,8 @@ export async function realizarPeticionGet(url) {
     if (!respuesta.ok) throw new Error("Error en la petición");
 
     const datos = await respuesta.json();
+    console.log(datos);
+    
     return datos;
 
   } catch (error) {
@@ -20,3 +22,4 @@ export async function realizarPeticionGet(url) {
     return null;
   }
 }
+

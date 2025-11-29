@@ -8,7 +8,9 @@ export function tablaReportes(reportes = []) {
                 <tr>
                     <th>Tipo</th>
                     <th>Fecha</th>
-                    <th>Detalles</th>
+                    <th> totalHabitaciones</th>
+                    <th> habitacionesOcupadas</th>
+                    <th> habitacionesDisponibles</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,7 +20,9 @@ export function tablaReportes(reportes = []) {
                             <tr>
                                 <td>${r.tipo}</td>
                                 <td>${new Date(r.fecha).toLocaleDateString()}</td>
-                                <td>${JSON.stringify(r.contenido)}</td>
+                                <td>${JSON.stringify(r.contenido.totalHabitaciones)}</td>
+                                <td>${JSON.stringify(r.contenido.habitacionesOcupadas)}</td>
+                                <td>${JSON.stringify(r.contenido.habitacionesDisponibles)}</td>
                             </tr>
                         `).join('')
                         : `<tr><td colspan="3">No hay reportes.</td></tr>`

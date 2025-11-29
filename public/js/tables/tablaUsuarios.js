@@ -2,7 +2,10 @@ export function tablaUsuarios(usuarios = []) {
         return `
         <div class="dashboard-section active" id="overview">
             <h2>📊 Usuarios Registrados</h2>
-            <p>Total: <strong>${usuarios ? usuarios.length : 0}</strong></p>
+            <div class="conten-heder"><p>Total: <strong>${usuarios ? usuarios.length : 0}</strong></p>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Nuevo Usuario</button>
+            </div>
+
 
             <div class="table-container">
                 <table class="table-usuarios">
@@ -39,3 +42,6 @@ export function tablaUsuarios(usuarios = []) {
         </div>
     `;
 }
+
+
+

@@ -1,41 +1,72 @@
-const PedidoRepository = require('../repositories/PedidoRepository');
+const PedidoComida = require('../models/PedidoComida');
 
-class PedidoService {
+class PedidoRepository {
+
   async obtenerTodos() {
-    return await PedidoRepository.obtenerTodos();
-  }
-
-  async obtenerPorId(id) {
-    const pedido = await PedidoRepository.obtenerPorId(id);
-    if (!pedido) {
-      throw new Error('Pedido no encontrado');
-    }
-    return pedido;
+    return await PedidoComida.find()
+      .populate({
+        path: 'reservaId',
+        populate: [
+          {
+            path: 'usuarioId',
+            model: 'Usuario'
+          },
+          {
+            path: 'habitacionId',
+            model: 'Habitacion'
+          }
+        ]
+      })
+      .populate('usuarioId');
   }
 
   async obtenerPorReserva(reservaId) {
-    return await PedidoRepository.obtenerPorReserva(reservaId);
+    return await PedidoComida.find({ reservaId })
+      .populate({
+        path: 'reservaId',
+        populate: [
+          {
+            path: 'usuarioId',
+            model: 'Usuario'
+          },
+          {
+            path: 'habitacionId',
+            model: 'Habitacion'
+          }
+        ]
+      })
+      .populate('usuarioId');
   }
 
-  async crear(pedidoData) {
-    return await PedidoRepository.crear(pedidoData);
+  async obtenerPorId(id) {
+    return await PedidoComida.findById(id)
+      .populate({
+        path: 'reservaId',
+        populate: [
+          {
+            path: 'usuarioId',
+            model: 'Usuario'
+          },
+          {
+            path: 'habitacionId',
+            model: 'Habitacion'
+          }
+        ]
+      })
+      .populate('usuarioId');
   }
 
-  async actualizar(id, pedidoData) {
-    const pedido = await PedidoRepository.actualizar(id, pedidoData);
-    if (!pedido) {
-      throw new Error('Pedido no encontrado');
-    }
-    return pedido;
+  async crear(data) {
+    return await PedidoComida.create(data);
+  }
+
+  async actualizar(id, data) {
+    return await PedidoComida.findByIdAndUpdate(id, data, { new: true });
   }
 
   async eliminar(id) {
-    const pedido = await PedidoRepository.eliminar(id);
-    if (!pedido) {
-      throw new Error('Pedido no encontrado');
-    }
-    return pedido;
+    return await PedidoComida.findByIdAndDelete(id);
   }
 }
 
-module.exports = new PedidoService();
+module.exports = new PedidoRepository();

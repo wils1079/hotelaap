@@ -5,13 +5,16 @@ class ReporteService {
     return await ReporteRepository.obtenerTodos();
   }
 
-  async obtenerPorId(id) {
-    const reporte = await ReporteRepository.obtenerPorId(id);
-    if (!reporte) {
-      throw new Error('Reporte no encontrado');
-    }
-    return reporte;
-  }
+async obtenerPorId(id) {
+  const reporte = await ReporteRepository.obtenerPorId(id);
+  if (!reporte) throw new Error('Reporte no encontrado');
+
+  return {
+    ...reporte._doc,
+    contenido: limpiarContenido(reporte.contenido)
+  };
+}
+
 
   async crear(reporteData) {
     return await ReporteRepository.crear(reporteData);

@@ -348,7 +348,7 @@ body {
 }
 
 .table-usuarios tr:hover {
-    background: #f3f6ff;
+    background: #898c94;
 }
 
 .table-usuarios td:last-child {
@@ -366,4 +366,11 @@ body {
     .dashboard-main {
         flex-direction: column;
     }
+}
+
+
+.conten-heder{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

@@ -25,7 +25,7 @@ const usuarioSchema = new mongoose.Schema({
       'admin',
       'Recepcionista',
       'Cocinero',
-      'Servicio de Limpieza',
+      'limpieza',
       'Cliente'
     ],
     required: true,

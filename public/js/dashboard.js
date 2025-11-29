@@ -1,6 +1,7 @@
 import { MENUS } from "./menus.js";
 import { SECTIONS } from "./sections.js";
 
+
 export class Dashboard {
 
     constructor() {
@@ -67,3 +68,49 @@ export class Dashboard {
 }
 
 new Dashboard();
+
+
+// post de un nuev suario
+
+console.log("registro.js cargado correctamente");
+
+document.getElementById('formRegistro').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const nombre = document.getElementById('nombre').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const rol = document.getElementById('rol').value;
+
+    const messageDiv = document.getElementById('message');
+
+    try {
+        const response = await fetch('/api/auth/registro', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ nombre, email, password, rol }),
+        });
+
+        console.log("Status respuesta:", response.status);
+        console.log("OK?:", response.ok);
+
+        const data = await response.json();
+        console.log("Respuesta completa:", data);
+
+        if (response.ok) {
+            alert("Usuario registrado correctamente");
+            window.location.reload();
+        } else {
+            messageDiv.textContent = data.message || 'Error al crear el usuario';
+            messageDiv.className = 'message error';
+        }
+
+    } catch (error) {
+        console.error("Error:", error);
+        messageDiv.textContent = 'Error de conexión';
+        messageDiv.className = 'message error';
+    }
+});
+

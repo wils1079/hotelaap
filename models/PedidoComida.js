@@ -6,6 +6,13 @@ const pedidoComidaSchema = new mongoose.Schema({
     ref: 'Reserva',
     required: true,
   },
+
+  usuarioId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Usuario',  
+    required: true
+  },
+
   descripcion: {
     type: String,
     required: true,

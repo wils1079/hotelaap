@@ -19,8 +19,8 @@ export function tablaReservas(reservas = []) {
                     reservas.length > 0
                         ? reservas.map(r => `
                             <tr>
-                                <td>${r.usuarioId}</td>
-                                <td>${r.habitacionId}</td>
+                                <td>${r.usuarioId.nombre}</td>
+                                <td>${r.habitacionId.numero}</td>
                                 <td>${new Date(r.fechaEntrada).toLocaleDateString()}</td>
                                 <td>${new Date(r.fechaSalida).toLocaleDateString()}</td>
                                 <td>$${r.total}</td>
